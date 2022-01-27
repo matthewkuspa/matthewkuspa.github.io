@@ -25,6 +25,6 @@ a:active {
   color: rgb(0,0,255);
 }
 
-.navcentered {
+div.navcentered {
       justify-content:center;
  }
