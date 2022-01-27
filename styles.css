@@ -27,8 +27,8 @@ a:active {
 }
 
 hr {
-    width:50%;
-    margin:0 auto;
+    border-width: 50%;
+    margin: 0 auto;
     height: 1px;
     color: rgb(80,151,80);
 }
