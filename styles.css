@@ -27,6 +27,7 @@ a:active {
 }
 
 hr {
+    width: 50%;
     border: 1px solid;
     color: rgb(80,151,80);
 }
