@@ -23,3 +23,7 @@ a:hover {
 a:active {
   color: rgb(0,0,255);
 }
+iframe {
+    border: 0px;
+    display: block;
+}
