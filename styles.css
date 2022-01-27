@@ -24,6 +24,6 @@ a:active {
   color: rgb(0,0,255);
 }
 iframe {
-    border: 0px;
+    border-width: 0px;
     display: block;
 }
