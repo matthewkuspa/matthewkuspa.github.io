@@ -39,7 +39,7 @@ hr {
 .badges{
     display: inline-block;
     width: 100px;
-    height: 100px;
+    height: 120px;
     background: #ccc;
     margin: 5px;
 }
