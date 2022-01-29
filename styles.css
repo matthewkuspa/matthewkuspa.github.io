@@ -32,16 +32,14 @@ hr {
     color: rgb(80,151,80);
 }
 
-/* Three image containers of 100px for THM Badges */
-.columnbadge1 {
-  float: left;
-  text-align: center;
-  width: 100px;
-  padding: 5px;
+.container{
+    border: 1px solid #ccc;
+    text-align: center;
 }
-/* Clearfix (clear floats, keeps floating images in table that are larger than their container from "overflowing")  */
-.rowbadge1::after {
-  content: "";
-  clear: both;
-  display: table;
+.badges{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background: #ccc;
+    margin: 5px;
 }
