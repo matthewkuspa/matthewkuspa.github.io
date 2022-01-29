@@ -31,3 +31,10 @@ hr {
     border: 1px solid;
     color: rgb(80,151,80);
 }
+
+/* Three image containers of 100px for THM Badges */
+.columnbadge {
+  float: left;
+  width: 100;
+  padding: 5px;
+}
