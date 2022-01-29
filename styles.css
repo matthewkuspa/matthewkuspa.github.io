@@ -33,8 +33,14 @@ hr {
 }
 
 /* Three image containers of 100px for THM Badges */
-.columnbadge {
+.columnbadge1 {
   float: left;
   width: 100px;
   padding: 5px;
+}
+/* Clearfix (clear floats, keeps floating images in table that are larger than their container from "overflowing")  */
+.rowbadge1::after {
+  content: "";
+  clear: both;
+  display: table;
 }
