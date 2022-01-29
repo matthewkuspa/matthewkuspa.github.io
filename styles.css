@@ -31,15 +31,3 @@ hr {
     border: 1px solid;
     color: rgb(80,151,80);
 }
-
-.container{
-    border: 1px solid #ccc;
-    text-align: center;
-}
-.badges{
-    display: inline-block;
-    width: 100px;
-    height: 120px;
-    background: #ccc;
-    margin: 5px;
-}
