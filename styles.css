@@ -35,6 +35,7 @@ hr {
 /* Three image containers of 100px for THM Badges */
 .columnbadge1 {
   float: left;
+  text-align: center;
   width: 100px;
   padding: 5px;
 }
