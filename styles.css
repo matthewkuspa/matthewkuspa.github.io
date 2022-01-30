@@ -28,6 +28,8 @@ a:active {
 
 hr {
     width: 50%;
+    /* default is center, below makes hr left justified */
+    margin-left: 0;
     border: 1px solid;
     color: rgb(80,151,80);
 }
