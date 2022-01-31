@@ -11,40 +11,82 @@
 	<title>textme</title>
 </head>
 <body>
-	<!-- Main content -->
+<!-- Main content -->
 <pre>
 <h1>textme: text yourself from terminal in MacOS Monterey</h1>
 This configuration creates a command allowing you to text yourself from the terminal in MacOS Monterey. It does so by setting up Postfix, a mail server that is installed on MacOS by default, creating a command you can use with parameters for the email subject and body, then using your email service to send an SMS to your phone via your personal email to SMS address.
 
-1.  determine and test your email to SMS address
+1. determine and test your email to SMS address
 
 First, find out what your email to SMS address is via Google. For example, T-Mobile's email to SMS syntax looks like:
 
-  <yourphonenumber>@tmomail.net
+  "yourphonenumber"@tmomail.net
 
 Test this email address before continuing by emailing yourself at this address with both a subject and some content. Note whether both subject and content are supported when you receive your text. (I assume they are but I haven't tested this on multiple phone service providers.)
 
-2. create an application-specific password
+2. create an application-specific email password
 
-Assuming you have MFA enabled on your email account, create an application-specific password to use just for this purpose.
+Assuming you have Multi-Factor Authentication (MFA) enabled on your email account, create an app-specific password to use for this purpose. If you don't use MFA, determine whether your account requires you to change a setting to use your password for this purpose (e.g., "less secure app access" in Gmail), and enable it if necessary. Otherwise, just use your regular password.
 
-3.  Create an sasl_passwd file for postfix:
+3. create an sasl_passwd file for postfix
 
   sudo nano/etc/postfix/sasl_passwd
 
-Add this to the file
+Add this to the file (Google your email provider for the specific SMTP settings):
 
-  smpt.youremailservice.com:port 
+  smpt.youremailservice.com:port youremail@service.com:password
 
+for example:
 
+  smtp.gmail.com:587 youremail@gmail.com:password
 
-Create a file named "textme.sh" and add the following:
+4. create a lookup table for postfix
+
+  sudo postmap /etc/postfix/sasl_passwd
+
+Note: if you modify the "sasl_passwd" file, you will need to create the lookup table again.
+
+5. edit the Postfix "main.cf" file
+
+Open main.cf:
+
+	sudo nano /etc/postfix/main.cf
+
+Change these values if necessary (or leave them the same):
+
+  mail_owner = _postfix
+  setgid_group = _postdrop
+
+Add these lines at the end of the file (change the first line as necessary according to your email provider, using the same information from step 3 above):
+
+  relayhost=smtp.gmail.com:587
+  smtp_sasl_auth_enable=yes
+  smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
+  smtp_sasl_security_options=noanonymous
+  smtp_sasl_mechanism_filter=plain
+  smtp_use_tls=yes
+  smtp_tls_security_level=encrypt
+  tls_random_source=dev:/dev/urandom
+
+6. create the "textme" command
+
+Create a file named "textme" and add the following:
 
   #!/bin/bash
   
-  echo "$2" | mail -s "$1" "4102064696@tmomail.net"
+  echo "$2" | mail -s "$1" yourphonenumber@your-email-to-smsaddress
 
-"$2" represents the body of your email, and "-s $1" represents the subject.
-</pre
+("$2" represents the body of your email, and "-s $1" represents the subject.)
+
+Move readme to /usr/local/bin, then make it executable:
+
+  chmod +x /usr/local/bin/readme
+
+7. testing
+
+  textme subject body
+
+Once you get it working, try adding it after an nmap command or similarly long scan to alert you when completed.
+</pre>
 </body>
 </html>
