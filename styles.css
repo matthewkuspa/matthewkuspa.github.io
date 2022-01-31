@@ -33,3 +33,8 @@ hr {
     border: 1px solid;
     color: rgb(80,151,80);
 }
+
+pre {
+ /* pre does not word wrap by default, below adds word wrap */
+ white-space: pre-wrap;
+}
