@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="robots" content="noindex,nofollow,noarchive">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+	<title>textme</title>
+</head>
+<body>
+	<!-- Main content -->
+<pre>
+<h1>textme: text yourself from terminal in MacOS Monterey</h1>
+This configuration creates a command allowing you to text yourself from the terminal in MacOS Monterey. It does so by setting up Postfix, a mail server that is installed on MacOS by default, creating a command you can use with parameters for the email subject and body, then using your email service to send an SMS to your phone via your personal email to SMS address.
 
+1.  determine and test your email to SMS address
+
+First, find out what your email to SMS address is via Google. For example, T-Mobile's email to SMS syntax looks like:
+
+  <yourphonenumber>@tmomail.net
+
+Test this email address before continuing by emailing yourself at this address with both a subject and some content. Note whether both subject and content are supported when you receive your text. (I assume they are but I haven't tested this on multiple phone service providers.)
+
+2. create an application-specific password
+
+Assuming you have MFA enabled on your email account, create an application-specific password to use just for this purpose.
+
+3.  Create an sasl_passwd file for postfix:
+
+  sudo nano/etc/postfix/sasl_passwd
+
+Add this to the file
+
+  smpt.youremailservice.com:port 
+
+
+
+Create a file named "textme.sh" and add the following:
+
+  #!/bin/bash
+  
+  echo "$2" | mail -s "$1" "4102064696@tmomail.net"
+
+"$2" represents the body of your email, and "-s $1" represents the subject.
+</pre
+</body>
+</html>
