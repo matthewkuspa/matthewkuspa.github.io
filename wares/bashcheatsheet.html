@@ -18,8 +18,7 @@ CTRL+a		Move to beginning of line
 CTRL+e		Move to end of line
 
 Add HTML line break to end of each line in output:
-<!-- Angle brackets must be escaped -->
-ps -ef | sed 's/$/&ltbr&gt/'
+ps -ef | sed 's/$/&ltbr&gt/'<!-- Note how angle brackets are escaped -->
 </pre
 </body>
 </html>
