@@ -45,5 +45,5 @@ pre {
  /* below breaks words, useful for code */  
   word-wrap: break-word;
 /* below keeps highlighting from running across page */  
-  display: table;
+  display: inline;
 }
