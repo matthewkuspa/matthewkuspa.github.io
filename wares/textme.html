@@ -59,20 +59,20 @@ setgid_group = _postdrop</div>
 
 Add these lines at the end of the file (change the first line as necessary according to your email provider, using the same information from step 3 above):
 
-<div class="code">relayhost=smtp.gmail.com:587</div>
-<div class="code">smtp_sasl_auth_enable=yes</div>
-<div class="code">smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd</div>
-<div class="code">smtp_sasl_security_options=noanonymous</div>
-<div class="code">smtp_sasl_mechanism_filter=plain</div>
-<div class="code">smtp_use_tls=yes</div>
-<div class="code">smtp_tls_security_level=encrypt</div>
-<div class="code">tls_random_source=dev:/dev/urandom</div>
+<div class="code">relayhost=smtp.gmail.com:587
+smtp_sasl_auth_enable=yes
+smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options=noanonymous
+smtp_sasl_mechanism_filter=plain
+smtp_use_tls=yes
+smtp_tls_security_level=encrypt
+tls_random_source=dev:/dev/urandom</div>
 
 6. create the "textme" command
 
 Create a file named "textme" and add the following:
 
-<div class="code">#!/bin/bash<br>
+<div class="code">#!/bin/bash
 echo "$2" | mail -s "$1" yourphonenumber@your-email-to-smsaddress</div>
 
 ("$2" represents the body of your email, and "-s $1" represents the subject.)
