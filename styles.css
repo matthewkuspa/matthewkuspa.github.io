@@ -38,3 +38,10 @@ pre {
  /* pre does not word wrap by default, below adds word wrap */
  white-space: pre-wrap;
 }
+
+/* for use with code examples */
+.code {
+  background-color: rgb(113,127,113);
+ /* below breaks words, useful for code */  
+  word-wrap: break-word;
+}
