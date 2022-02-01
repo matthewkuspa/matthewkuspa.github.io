@@ -50,3 +50,9 @@ pre {
   /* below keeps highlighting from running across page */  
   display: inline;
 }
+
+/* should add scaling for images */
+img {
+  width: 100%;
+  height: auto;
+}
