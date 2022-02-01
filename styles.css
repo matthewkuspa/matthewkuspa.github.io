@@ -41,7 +41,7 @@ pre {
 
 /* for use with code examples */
 .code {
-  background-color: rgb(113,127,113);
+  background-color: rgb(41,70,41);
  /* below breaks words, useful for code */  
   word-wrap: break-word;
 }
