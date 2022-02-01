@@ -31,10 +31,10 @@ The "Pass input:" dropdown menu should be set to "as arguments". In this case, i
 On to the code:
 
 <div class="code">"for input in "$@"
-	do
-		FILENAMENOEXT=$(echo $input | rev | cut -d"." -f2 | rev)
-		/usr/local/bin/convert -resize '90' -background none "$input" "$FILENAMENOEXT"-90w.png
-	done</div>
+  do
+    FILENAMENOEXT=$(echo $input | rev | cut -d"." -f2 | rev)
+    /usr/local/bin/convert -resize '90' -background none "$input" "$FILENAMENOEXT"-90w.png
+  done</div>
 
 The special variable "$@" represents all the command-line arguments (in this case, the list of filenames) provided to the script as an array. Effectively, the output will be separate lines. This is useful as we want to send each filename through our for loop in turn. (As an aside, if you replaced this with, e.g., "$*", which is a string containing all arguments, the arguments would all list on the same line, separated by a space.)
 
