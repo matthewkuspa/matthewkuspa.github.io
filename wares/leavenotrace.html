@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="robots" content="noindex,nofollow,noarchive">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+	<title>leave no trace</title>
+</head>
+<body>
+<!-- Main content -->
+<pre>
+<h1>leave no trace: deleting your history entries in terminal</h1>
+This code disables your history, then deletes the history entry disabling the history. After executing the commands, remember to re-enable the history.
+
+Theoretically, this could be used together with rubber ducky or a similar tool to leave no trace in the history of the target machine.
+
+# first type a memorable command
+# now pause history
+<div class="code">set +o history</div>
+# remove reference to set +o history from history
+<div class="code">VARHISTREMOVE=$(history | tail -1 | tr -d ' ' | sed "s/set+ohistory//"); history -d $VARHISTREMOVE; unset VARHISTREMOVE</div>
+# now type the commands you want hidden
+# now re-enable history
+<div class="code">set -o history</div>
+# now check history, last command should be the first "memorable command" above
+<div class="code">history | tail -2</div>
+</pre>
+</body>
+</html>
