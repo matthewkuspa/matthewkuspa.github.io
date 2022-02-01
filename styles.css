@@ -43,10 +43,11 @@ pre {
 /* for use with code examples */
 .code {
   /* slightly brighter text color */  
-  color: rgb(126,243,75);
+  color: rgb(119,230,71);
   background-color: rgb(36,61,36);
   /* below breaks words, useful for code */  
   word-wrap: break-word;
   /* below keeps highlighting from running across page */  
   display: inline;
+  margin-left: 5%
 }
