@@ -41,9 +41,11 @@ pre {
 
 /* for use with code examples */
 .code {
-  background-color: rgb(41,70,41);
- /* below breaks words, useful for code */  
+  /* slightly brighter text color */  
+  color: rgb(126,243,75);
+  background-color: rgb(30,51,30);
+  /* below breaks words, useful for code */  
   word-wrap: break-word;
-/* below keeps highlighting from running across page */  
+  /* below keeps highlighting from running across page */  
   display: inline;
 }
