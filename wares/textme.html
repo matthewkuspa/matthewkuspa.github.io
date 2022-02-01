@@ -20,7 +20,7 @@ This configuration creates a command allowing you to text yourself from the term
 
 First, find out what your email to SMS address is via Google. For example, T-Mobile's email to SMS syntax looks like:
 
-  "yourphonenumber"@tmomail.net
+<div class="code">"yourphonenumber"@tmomail.net</div>
 
 Test this email address before continuing by emailing yourself at this address with both a subject and some content. Note whether both subject and content are supported when you receive your text. (I assume they are but I haven't tested this on multiple phone service providers.)
 
@@ -30,19 +30,19 @@ Assuming you have Multi-Factor Authentication (MFA) enabled on your email accoun
 
 3. create an sasl_passwd file for postfix
 
-  sudo nano/etc/postfix/sasl_passwd
+<div class="code">sudo nano/etc/postfix/sasl_passwd</div>
 
 Add this to the file (Google your email provider for the specific SMTP settings):
 
-  smpt.youremailservice.com:port youremail@service.com:password
+<div class="code">smpt.youremailservice.com:port youremail@service.com:password</div>
 
 for example:
 
-  smtp.gmail.com:587 youremail@gmail.com:password
+<div class="code">smtp.gmail.com:587 youremail@gmail.com:password</div>
 
 4. create a lookup table for postfix
 
-  sudo postmap /etc/postfix/sasl_passwd
+<div class="code">sudo postmap /etc/postfix/sasl_passwd</div>
 
 Note: if you modify the "sasl_passwd" file, you will need to create the lookup table again.
 
@@ -50,41 +50,40 @@ Note: if you modify the "sasl_passwd" file, you will need to create the lookup t
 
 Open main.cf:
 
-	sudo nano /etc/postfix/main.cf
+<div class="code">sudo nano /etc/postfix/main.cf</div>
 
 Change these values if necessary (or leave them the same):
 
-  mail_owner = _postfix
-  setgid_group = _postdrop
+<div class="code">mail_owner = _postfix</div>
+<div class="code">setgid_group = _postdrop</div>
 
 Add these lines at the end of the file (change the first line as necessary according to your email provider, using the same information from step 3 above):
 
-  relayhost=smtp.gmail.com:587
-  smtp_sasl_auth_enable=yes
-  smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
-  smtp_sasl_security_options=noanonymous
-  smtp_sasl_mechanism_filter=plain
-  smtp_use_tls=yes
-  smtp_tls_security_level=encrypt
-  tls_random_source=dev:/dev/urandom
+<div class="code">relayhost=smtp.gmail.com:587</div>
+<div class="code">smtp_sasl_auth_enable=yes</div>
+<div class="code">smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd</div>
+<div class="code">smtp_sasl_security_options=noanonymous</div>
+<div class="code">smtp_sasl_mechanism_filter=plain</div>
+<div class="code">smtp_use_tls=yes</div>
+<div class="code">smtp_tls_security_level=encrypt</div>
+<div class="code">tls_random_source=dev:/dev/urandom</div>
 
 6. create the "textme" command
 
 Create a file named "textme" and add the following:
 
-  #!/bin/bash
-  
-  echo "$2" | mail -s "$1" yourphonenumber@your-email-to-smsaddress
+<div class="code">#!/bin/bash</div>
+<div class="code">echo "$2" | mail -s "$1" yourphonenumber@your-email-to-smsaddress</div>
 
 ("$2" represents the body of your email, and "-s $1" represents the subject.)
 
 Move readme to /usr/local/bin, then make it executable:
 
-  chmod +x /usr/local/bin/readme
+<div class="code">chmod +x /usr/local/bin/readme</div>
 
 7. testing
 
-  textme subject body
+<div class="code">textme subject body</div>
 
 Once you get it working, try adding it after an nmap command or similarly long scan to alert you when completed.
 </pre>
