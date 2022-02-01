@@ -54,8 +54,8 @@ Open main.cf:
 
 Change these values if necessary (or leave them the same):
 
-<div class="code">mail_owner = _postfix</div>
-<div class="code">setgid_group = _postdrop</div>
+<div class="code">mail_owner = _postfix
+setgid_group = _postdrop</div>
 
 Add these lines at the end of the file (change the first line as necessary according to your email provider, using the same information from step 3 above):
 
@@ -72,8 +72,8 @@ Add these lines at the end of the file (change the first line as necessary accor
 
 Create a file named "textme" and add the following:
 
-<div class="code">#!/bin/bash</div>
-<div class="code">echo "$2" | mail -s "$1" yourphonenumber@your-email-to-smsaddress</div>
+<div class="code">#!/bin/bash<br>
+echo "$2" | mail -s "$1" yourphonenumber@your-email-to-smsaddress</div>
 
 ("$2" represents the body of your email, and "-s $1" represents the subject.)
 
